@@ -10,5 +10,6 @@ namespace Pet_Adoption_API.Data
             
         }
         public DbSet<Pets> Pets {get;set;}
+        public DbSet<Staff> Staff {get;set;}
     }
 }

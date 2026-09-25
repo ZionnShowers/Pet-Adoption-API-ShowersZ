@@ -15,7 +15,7 @@ namespace Pet_Adoption_API.Controllers
             _pets = pets; //supplying the empty variable with methods from our StudentServices class
         }
 
-        [HttpGet("GetAllPets")]
+        [HttpGet("GetAll")]
         public ActionResult<List<Pets>> GetAll(bool isdeleted)
         {
             //We are storing our students from our Database into the students List
@@ -25,7 +25,7 @@ namespace Pet_Adoption_API.Controllers
             return Ok(pets); //return 200 status & Students
         }
 
-        [HttpPost("Create")]
+        [HttpPost("Add")]
         public ActionResult<Pets> Create([FromBody] Pets newpets)
         {
             Pets createdPet = _pets.AddPet(newpets);
@@ -71,7 +71,7 @@ USE FOR EDITING OR TESTING*/
             return NoContent();
         }
 
-        [HttpPut("delete/{id}")]
+        [HttpDelete("delete/{id}")]
         public ActionResult<bool> Delete(int id, Pets newpets)
         {
             bool updated = _pets.DeletePet(id, newpets);
@@ -83,7 +83,7 @@ USE FOR EDITING OR TESTING*/
             return NoContent();
         }
 
-        [HttpPut("restore/{id}")]
+        [HttpPatch("restore/{id}")]
         public ActionResult<bool> Restore(int id, Pets newpets)
         {
             bool updated = _pets.RestorePet(id, newpets);
