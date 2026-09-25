@@ -15,10 +15,10 @@ namespace Pet_Adoption_API.Services
             //We pass in our database as a parameter and set inside of our _db variable
         }
 
-        public List<Pets> GetAll(bool isdeleted)
+        public List<Pets> GetAll(bool isdeleted, bool isadopted)
         {
             IEnumerable<Pets> result = _db.Pets.ToList();
-            result = result.Where(p => p.IsDeleted == isdeleted);
+            result = result.Where(p => p.IsDeleted == isdeleted && p.IsAdopted == isadopted);
             return result.ToList();
         }
 
@@ -54,7 +54,7 @@ namespace Pet_Adoption_API.Services
             return true;
         }
 
-        public bool AdoptPet(int id, Pets newpets)
+        public bool AdoptPet(int id)
         {
             Pets? existing = _db.Pets.FirstOrDefault(c => c.id == id);
 
@@ -70,7 +70,7 @@ namespace Pet_Adoption_API.Services
             
         }
 
-        public bool DeletePet(int id, Pets newpets)
+        public bool DeletePet(int id)
         {
             Pets? existing = _db.Pets.FirstOrDefault(c => c.id == id);
 
@@ -85,7 +85,7 @@ namespace Pet_Adoption_API.Services
             
         }
 
-        public bool RestorePet(int id, Pets newpets)
+        public bool RestorePet(int id)
         {
             Pets? existing = _db.Pets.FirstOrDefault(c => c.id == id);
 

@@ -16,11 +16,11 @@ namespace Pet_Adoption_API.Controllers
         }
 
         [HttpGet("GetAll")]
-        public ActionResult<List<Pets>> GetAll(bool isdeleted)
+        public ActionResult<List<Pets>> GetAll(bool isdeleted, bool isadopted)
         {
             //We are storing our students from our Database into the students List
             // if (_pets.IsDeleted)
-                List<Pets> pets = _pets.GetAll(isdeleted);
+                List<Pets> pets = _pets.GetAll(isdeleted, isadopted);
 
             return Ok(pets); //return 200 status & Students
         }
@@ -59,10 +59,10 @@ namespace Pet_Adoption_API.Controllers
 } 
 USE FOR EDITING OR TESTING*/
 
-        [HttpPut("adopt/{id}")]
-        public ActionResult<bool> Adopt(int id, Pets newpets)
+        [HttpPatch("adopt/{id}")]
+        public ActionResult<bool> Adopt(int id)
         {
-            bool updated = _pets.AdoptPet(id, newpets);
+            bool updated = _pets.AdoptPet(id);
 
             if(updated == false)
             {
@@ -72,9 +72,9 @@ USE FOR EDITING OR TESTING*/
         }
 
         [HttpDelete("delete/{id}")]
-        public ActionResult<bool> Delete(int id, Pets newpets)
+        public ActionResult<bool> Delete(int id)
         {
-            bool updated = _pets.DeletePet(id, newpets);
+            bool updated = _pets.DeletePet(id);
 
             if(updated == false)
             {
@@ -84,9 +84,9 @@ USE FOR EDITING OR TESTING*/
         }
 
         [HttpPatch("restore/{id}")]
-        public ActionResult<bool> Restore(int id, Pets newpets)
+        public ActionResult<bool> Restore(int id)
         {
-            bool updated = _pets.RestorePet(id, newpets);
+            bool updated = _pets.RestorePet(id);
 
             if(updated == false)
             {
