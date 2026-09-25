@@ -66,7 +66,7 @@ USE FOR EDITING OR TESTING*/
 
             if(updated == false)
             {
-                return NotFound($"There is no pet with ID {id}.");
+                return NotFound($"Pet ID {id} is not available.");
             }
             return NoContent();
         }

@@ -58,7 +58,7 @@ namespace Pet_Adoption_API.Services
         {
             Pets? existing = _db.Pets.FirstOrDefault(c => c.id == id);
 
-            if(existing == null)
+            if(existing == null || existing.IsAdopted == true || existing.IsDeleted == true)
             {
                 return false;
             }
